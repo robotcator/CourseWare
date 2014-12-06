@@ -10,12 +10,30 @@
     
     <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
 	
+	<style type="text/css">
+	#Frame
+	{
+		width:500px;
+		height:300px;
+		position:absolute;
+		left:50%;
+		top:50%;
+		margin-left:-250px;
+		margin-top:-150px;
+	}
+	</style> 
+	
   </head>
   
   <body>
-  	<div align = "center">
-	    <H1>学生选课系统</H1>
-	    <form name = "login_form" method = "post" action = "LoginHandle.jsp">
+  <div id="container" style="width:100%">
+	<div id="header" style="background-color:#FFA500;">
+		<h1 style="text-align:center">学生选课系统</h1>
+	</div>
+	
+	<div id="content" style="background-color:#EEEEEE;height:300pt;width:100%;">
+		<form name = "login_form" method = "post" action = "LoginHandle.jsp">
+			<div align="center" id="Frame">
 			<table>
 			<tr>
 				<td width = "50%" height = "30" align = "right">用户名：</td>
@@ -34,7 +52,14 @@
 				</td>
 			</tr>
 			</table>
+			</div>
 		</form>
-    </div>
+	</div>
+	
+	<div id="footer" style="background-color:#FFA500;clear:both;text-align:center;">
+		Copyright © ccnu
+	</div>
+	
+  </div>
   </body>
 </html>

@@ -5,11 +5,6 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
-<%! 
-	String strSql = null;
-	ResultSet rs = null;
-	int iCount = 0;
-%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -45,6 +40,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   			} else {
   				session.setAttribute("UserName", User.getUserName());
   				session.setAttribute("Role", User.getRole());
+  				session.setAttribute("UserPassword", User.getUserPassword());
   				
   				if(User.getRole().equals("0")) {
   					response.sendRedirect("Administrator.html");
