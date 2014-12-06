@@ -4,7 +4,7 @@ This is my first practium.
   have accomplished the administrator module
   
 2014/12/6
-  have accomplished most of the modules, but there is still many problem to improvement.
+  have accomplished most of the modules, but there are still many problems to improve.
   
 
 corporator :
