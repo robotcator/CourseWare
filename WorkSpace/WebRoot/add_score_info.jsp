@@ -20,9 +20,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-	<jsp:useBean scope="page" id="Student" class="cJava.Student" />
-	<jsp:useBean scope="page" id="Page" class="cJava.SplitPage" />
 	<jsp:useBean scope="page" id="Score" class="cJava.SelectCourse" />
+	<jsp:useBean scope="page" id="Teacher" class="cJava.Teacher" />
+	<jsp:useBean scope="page" id="Page" class="cJava.SplitPage" />
+	<jsp:useBean scope="page" id="Lstudent" class="cJava.TeachCourse" />
 	
   </head>
   
@@ -35,9 +36,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<a href="view_student_list.jsp" style="text-decoration:none;">查看学生信息</a><br><br>
 		<a href="add_score_info.jsp" style="text-decoration:none;">添加学生成绩</a><br></br>
 	</div>
+	
     <div id="content" style="background-color:#EEEEEE;height:320pt;width:90%;x;float:left;">
 		<div align="center">
 			<form action="add_score_save.jsp" method="post">
+			<div align="center">
+				请输入课程名字:<input type="text" name="CourseName">
+			</div>
 			<table width="90%" border="0" cellpadding="0" cellspacing="1">
 			<tr bgcolor="#CC99FF">
 				<th width="15%" height="30" align="center">学号</th>
@@ -47,24 +52,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<th width="15%" height="30" align="center">成绩</th>
 			</tr>	
 		<%
-			ResultSet rs = Student.showStudent();
-			Page.initialize(rs, 12);
-			String	strPage = null;
-			int showPage = 1;
-			strPage = request.getParameter("showPage");
-			if(strPage == null){
-				showPage = 1;
-			} else {
-				try{
-					showPage = Integer.parseInt(strPage);
-				} catch (NumberFormatException e) {
-					showPage = 1;
-				}
-			}
-			if(showPage > Page.getPageCount()) {
-				showPage = Page.getPageCount();
-			}
-			Vector vData = Page.getPage(showPage);
+			Lstudent.setUserID(session.getAttribute("UserName").toString());
+			Lstudent.setUserPassword(session.getAttribute("UserPassword").toString());
+			
+			ResultSet rs = Lstudent.showStudent();
+			
+			Vector vData = Page.getAllPage(rs);
+			
 			for(int i = 0; i < vData.size(); i ++){
 				String[] sData = (String[])vData.get(i); 
 	    %>
@@ -82,60 +76,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</tr>
 		<% 
 			}
-			if(vData.size() != 12) {
-				for(int i = vData.size(); i < 12; i ++){
 		%>
-			<tr>
-				<td width="10%" height="25" align="center"></td>
-				<td width="10%" height="25" align="center"></td>
-				<td width="10%" height="25" align="center"></td>
-				<td width="10%" height="25" align="center"></td>
-				<td width="10%" height="25" align="center"></td>
-			</tr>
-		<% 
-				}
-			}
-		 %>
 		</table>
+			
 			<input type="submit" name="sub" value="提交"/>
+		<%
+			rs.close();
+		%>
 		</form>
-			<form action="add_score_info.jsp" method="post" target="_self">	
-			第<font color="#FF0000"><%=showPage%></font>页/共<font color=red><%=Page.getPageCount()%></font>页&nbsp;
-			<a href="add_score_info.jsp?showPage=1" target="_self"><font color="#0000FF">[首页]</font></a>&nbsp;			
-			<%
-				//判断"上一页"链接是否要显示
-				if(showPage > 1){				
-			%>
-					<a href="add_score_info.jsp?showPage=<%=showPage-1%>" target="_self"><font color="#0000FF">[上一页]</font> </a>&nbsp;
-			<%
-				}else{
-					out.println("[上一页]&nbsp;");
-				}
-				//判断"下一页"链接是否要显示
-				if(showPage < Page.getPageCount()){				
-			%>
-					<a href="add_score_info.jsp?showPage=<%=showPage+1%>" target="_self"><font color="#0000FF">[下一页]</font> </a>&nbsp;
-			<%
-				}else{
-					out.println("[下一页]&nbsp;");
-				}
-			%> 
-			<a href="add_score_info.jsp?showPage=<%=Page.getPageCount()%>" target="_self"><font color="#0000FF">[尾页]</font> </a>&nbsp;
-			转到
-			<select name="showPage">
-			<%
-				for(int x = 1; x <= Page.getPageCount(); x ++){
-			%>
-					<option value="<%=x%>" <%if(showPage==x) out.println("selected");%> ><%=x%></option>
-			<%
-				}
-			%>
-			</select>页&nbsp;
-			<input type="submit" name="go" value="提交"/>
-		</form>
-		
-		<%rs.close();%>
+			
 		</div>
+		<div id="footer" style="background-color:#FFA500;clear:both;text-align:center;margin:60pt 0pt 0pt 0pt">
+			Copyright © ccnu
+		</div>
+		
 	</div>
   </body>
 </html>

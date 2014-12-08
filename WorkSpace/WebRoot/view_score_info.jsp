@@ -48,14 +48,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<th width="15%" height="30" align="center">课堂号</th>
 				<th width="15%" height="30" align="center">课程名字</th>
 				<th width="15%" height="30" align="center">课程学分</th>
-				<th width="15%" height="30" align="center">上课地点</th>
-				<th width="15%" height="30" align="center">上课时间</th>
-				<th width="15%" height="30" align="center">上课时间</th>
+				<th width="15%" height="30" align="center">成绩</th>
 			</tr>	
 		<%
 			Scourse.setUserID(session.getAttribute("UserName").toString());
 			Scourse.setUserPassword(session.getAttribute("UserPassword").toString());
-			ResultSet rs = Scourse.showCourse();
+			
+			ResultSet rs = Scourse.showScore();
 			Page.initialize(rs, 12);
 			String	strPage = null;
 			int showPage = 1;
@@ -78,12 +77,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    %>
 			<tr>
 				<td width="10%" height="25" align="center"><%=sData[0]%></td>
-				
+				<td width="10%" height="25" align="center"><%=sData[1]%></td>
 				<td width="10%" height="25" align="center"><%=sData[2]%></td>
 				<td width="10%" height="25" align="center"><%=sData[3]%></td>
-				<td width="10%" height="25" align="center"><%=sData[4]%></td>
-				<td width="10%" height="25" align="center"><%=sData[5]%></td>
-				<td width="10%" height="25" align="center"><%=sData[6] == null ? "" : sData[6]%></td>
 			</tr>
 		<% 
 			}

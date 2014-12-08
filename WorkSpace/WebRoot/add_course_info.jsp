@@ -54,8 +54,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 			</table>
 			<p align="center">
-				<input type="submit" value="添加" name="sub">&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="reset" value="清除" name="res">&nbsp;&nbsp;
+				<input type="submit" value="添加" name="sub" align="right">&nbsp;&nbsp;
+				<input type="reset" value="清除" name="res" align="left">&nbsp;&nbsp;
 			</p>
 	  </form>
 		

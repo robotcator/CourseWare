@@ -22,6 +22,7 @@ public class TeachCourse extends ExecuteDB{
 		ResultSet rs = null;
 		try{
 			rs = super.exeQuery(this.strSql);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

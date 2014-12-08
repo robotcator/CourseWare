@@ -33,6 +33,38 @@ public class SplitPage {
 		}
 	}
 	
+	public Vector getAllPage(ResultSet rs){
+		Vector vData = new Vector();
+		try{
+			this.rs = rs;
+			this.rsmd = this.rs.getMetaData();
+			// ѧϰrsmd
+			if(this.rs != null) {
+				this.rs.last();
+				this.rowCount = this.rs.getRow();
+				this.rs.first();
+			} else {
+				this.rowCount = 0;
+			}
+			
+			for(int i = 0; i < this.rowCount; i ++){
+				String[] sData = new String[15];
+				for(int j = 0; j < this.rsmd.getColumnCount(); j ++){
+					sData[j] = this.rs.getString(j+1);
+				}
+				if(sData == null){
+					break;
+				}
+				vData.addElement(sData);
+				this.rs.next();
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return vData;
+	}
+	
+	
 	public Vector getPage(int ipage) {
 		Vector vData = new Vector();
 		int n = ipage;

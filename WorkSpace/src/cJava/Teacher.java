@@ -60,6 +60,25 @@ public class Teacher extends ExecuteDB{
 		return isAdd;
 	}
 	
+	public ResultSet showStudent(){
+		this.strSql = "SELECT DISTINCT a.studentID, a.StudentName, a.StudentSex," +
+				" a.StudentClass, a.Sdepartment FROM studenttable AS a, selecttable AS b," +
+				" teachertable AS c, coursetable AS d, teachtable AS e WHERE" +
+				" c.TeacherID = " + this.TeacherID + " AND c.TeacherID = e.TeacherID " +
+				" AND e.CourseID = b.CourseID AND b.StudentID = a.StudentID ";
+		
+		System.out.println(this.strSql);
+		
+		ResultSet rs = null;
+		try{
+			rs = super.exeQuery(this.strSql);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rs;
+	}
+	
 	public void setTeacherID(String TeacherID) {
 		this.TeacherID = TeacherID;	
 	}   
