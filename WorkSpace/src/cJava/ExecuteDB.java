@@ -15,11 +15,26 @@ public class ExecuteDB extends ConnectDB {
 		errorMessage = super.getErrorMessage();
 	}
 	
+	public boolean exeInsert(String strSql) {
+		boolean isSuc = false;
+		try{
+			stmt = dbConn.createStatement();
+			stmt.execute(strSql);
+			stmt.close();
+			isSuc = true;
+		} catch (Exception e) {
+			this.errorMessage = this.errorMessage + "<\br>" + e.toString();
+		}
+		return isSuc;
+	}
+	
 	public boolean exeSQL(String strSql) {
 		boolean isSuc = false;
 		try{
 			stmt = dbConn.createStatement();
+		
 			stmt.executeUpdate(strSql);
+			
 			stmt.close();
 			isSuc = true;
 		} catch (Exception e) {

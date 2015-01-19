@@ -53,7 +53,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			if(User.add()){
 				Teacher.add();
 				out.println("<p><font color=blue>添加教师信息成功</font></p>");
-				out.println("<a href=\"add_student_info.jsp\"><font color=blue>继续添加</font></a>");
+				out.println("<a href=\"add_teacher_info.jsp\"><font color=blue>继续添加</font></a>");
 			}
 			else
 			{

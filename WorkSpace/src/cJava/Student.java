@@ -47,7 +47,7 @@ public class Student extends ExecuteDB{
 		this.strSql=this.strSql + "'" + this.Sdepartment + "'";
 		this.strSql=this.strSql + ")";
 		
-		System.out.println(this.strSql);
+		//System.out.println(this.strSql);
 		
 		boolean isAdd = super.exeSQL(this.strSql);		
 		return isAdd;
@@ -57,7 +57,7 @@ public class Student extends ExecuteDB{
 		this.strSql="delete from StudentTable where StudentID in (";
 		this.strSql=this.strSql + sUserID + ")";
 		
-		System.out.println(this.strSql);
+		//System.out.println(this.strSql);
 		
 		boolean isDelete = super.exeSQL(this.strSql);		
 		return isDelete;

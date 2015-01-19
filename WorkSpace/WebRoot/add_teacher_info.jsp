@@ -34,8 +34,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<div id="menu" style="background-color:#FFD700;height:300pt;width:10%;float:left;">
 		<br></br><br></br><br></br>
-		<a href="modify_student_info.jsp" style="text-decoration:none;">增加学生信息</a><br><br>
-		<a href="modify_teacher_info.jsp" style="text-decoration:none;">增加老师信息</a><br></br>
+		<a href="add_student_info.jsp" style="text-decoration:none;">增加学生信息</a><br><br>
+		<a href="add_teacher_info.jsp" style="text-decoration:none;">增加老师信息</a><br></br>
 		<a href="view_student_info.jsp" style="text-decoration:none;">查看学生信息</a><br></br>
 		<a href="view_teacher_info.jsp" style="text-decoration:none;">查看老师信息</a><br></br>
 	</div>
@@ -58,8 +58,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</tr>
 	<tr>	
 		<td width="20%"height="30" align="right">性别:</td>
-		<td width="30%"height="30" align="left">&nbsp;<input type="radio" value="男" name="StudentSex">男
-		<input type="radio" value="女" name="Sex">女</td>
+		<td width="30%"height="30" align="left">&nbsp;<input type="radio" value="男" name="TeacherSex">男
+		<input type="radio" value="女" name="TeacherSex">女</td>
 		
 	</tr>
 	<tr>	

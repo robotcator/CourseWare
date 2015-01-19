@@ -17,7 +17,7 @@ public class TeachCourse extends ExecuteDB{
 				" WHERE c.TeacherID = " + this.User + " AND c.CourseID = b.CourseID" + 
 				" AND c.CourseClass = b.CourseClass AND b.StudentID = a.StudentID";		
 		
-		System.out.println(this.strSql);
+		//System.out.println(this.strSql);
 		
 		ResultSet rs = null;
 		try{

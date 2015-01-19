@@ -11,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'LoginHandle.jsp' starting page</title>
+    <title>Validation</title>
     
     <jsp:useBean scope = "page" id = "User" class = "cJava.User" />
     
@@ -35,7 +35,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		//	out.println(User.valid());
   			
   			if(!User.valid()) {
-  				out.println("<p align=center><font color=red></font></p>");
+  				out.println("<p align=center><font color=red>用户名或者密码错误</font></p>");
 				out.println("<div align=\"center\"><input type=\"button\" name=\"btn\" value=\"back\" onClick=\"javascript:window.history.go(-1)\"></div>");
   			} else {
   				session.setAttribute("UserName", User.getUserName());

@@ -1,0 +1,21 @@
+@charset "utf-8";
+*{margin:0;padding:0;list-style-type:none;}
+a,img{border:0;}
+body{font-family:'Nanum Gothic';color:#000000;background-image:url("../images/index_bg.png");}
+/* intro */
+#intro{width:520px;height:520px;overflow:hidden;position:relative;margin:0px auto;}
+#intro .obj{position:absolute;}
+#intro .top{z-index:1;width:2000px;height:723px;background-image:url("../images/intro_bg_top.png");top:0px;left:0px;}
+#intro .bottom{z-index:10;width:2000px;height:650px;background-image:url("../images/intro_bg_bottom.png");top:468px;left:0px}
+#intro .wave{z-index:3;width:1305px;height:280px;top:445px;left:218px}
+#intro .drop{z-index:4;width:310px;height:280px;top:445px;left:1150px;display:none;}
+#intro .pocari{z-index:5;width:480px;height:280px;top:100px;left:570px;display:none;}
+#intro .txt{z-index:6;width:265px;height:153px;top:200px;left:250px;display:none;}
+#intro .electro{z-index:7;top:160px;margin:0px auto;display:none;}
+#intro .electro .wrap{position:relative;}
+#intro .electro .wrap .ele{top:120px;left:120px;z-index:8}
+
+#intro .electro .wrap .el2{top:40px;left:120px;}
+#intro .electro .wrap .el3{top:120px;left:90px;}
+
+

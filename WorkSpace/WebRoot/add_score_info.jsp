@@ -40,9 +40,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div id="content" style="background-color:#EEEEEE;height:320pt;width:90%;x;float:left;">
 		<div align="center">
 			<form action="add_score_save.jsp" method="post">
-			<div align="center">
-				请输入课程名字:<input type="text" name="CourseName">
-			</div>
+				课程编号:<input type="text" name="CourseID" >
+				课堂号:<input type="text" name="CourseClass" > <br></br>
 			<table width="90%" border="0" cellpadding="0" cellspacing="1">
 			<tr bgcolor="#CC99FF">
 				<th width="15%" height="30" align="center">学号</th>

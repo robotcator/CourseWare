@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Index</title>
+<link href="./css/style_index.css" rel="stylesheet" type="text/css" />
+
+<script src="./js/jquery-1-11.js" type="text/javascript"></script>
+<script src="./js/TweenMax.min.js" type="text/javascript"></script>
+<script src="./js/main.js" type="text/javascript"></script>
+<script type="text/css">
+	.us {display: none;}
+</script>
+
+/*
+	鼠标停留显示提醒
+*/
+<script>
+$(document).ready(function(){
+	$("#hot1").mouseover(function(){
+		$(".us1").show("slow");
+		$("#hot1").mouseout(function(){
+			$(".us1").hide("slow");
+		});
+	});
+	$("#hot2").mouseover(function(){
+		$(".us2").show("slow");
+		$("#hot2").mouseout(function(){
+			$(".us2").hide("slow");
+		});
+	});
+	$("#hot3").mouseover(function(){
+		$(".us3").show("slow");
+		$("#hot3").mouseout(function(){
+			$(".us3").hide("slow");
+		});
+	});
+	
+});
+</script>
+
+</head>
+<body>
+<div id="intro">
+	<div class="electro obj">
+		<div class="wrap">
+			<div class="ele obj">
+			<img src="./images/image/huashi.png" width="120"/>
+			</div>
+			<div class="el2 obj"><a href="exLogin.html">
+			<img id="hot1" src="images/image/huanke.png" width="50" /></a>
+			</div>
+			<div class='us1' style="display:none"> 选课系统</div>
+			
+			<div class="el9 obj"><a href="http://www.ccnu.edu.cn">
+			<img id="hot2" src="images/image/lianjie.png"  width="50" /></a>
+			</div>
+			<div class='us2' style="display:none"> 友情链接</div>
+			
+			<div class="el12 obj"><a href="Login.html">
+			<img id="hot3" src="images/image/xuanke.png" width="50" /></a>
+			</div>
+			<div class='us3' style="display:none"> 换课系统</div>
+		</div>
+	</div>
+</div>
+<div id="footer" style="clear:both;text-align:center;">
+		Copyright © ccnu
+</div>
+</body>
+</html>
+

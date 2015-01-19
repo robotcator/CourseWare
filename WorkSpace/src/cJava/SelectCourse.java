@@ -25,7 +25,7 @@ public class SelectCourse extends ExecuteDB{
 				" WHERE b.StudentID = " + this.User + " AND b.CourseID = a.CourseID AND" +
 						" b.CourseClass = a.CourseClass	";
 		
-		System.out.println(this.strSql);
+		//System.out.println(this.strSql);
 		
 		ResultSet rs = null;
 		try{
@@ -43,7 +43,7 @@ public class SelectCourse extends ExecuteDB{
 				" WHERE b.studentID = " + this.User + " AND b.CourseID = a.CourseID AND " +
 				" b.CourseClass = a.CourseClass ";		
 		
-		System.out.println(this.strSql);
+		//System.out.println(this.strSql);
 		
 		ResultSet rs = null;
 		try{
@@ -54,22 +54,33 @@ public class SelectCourse extends ExecuteDB{
 		return rs;
 	}
 	
-	public boolean addScore(String Score[], String StudentID){
+	public boolean addScore(String[] Score, String[] StudentID, String CourseID, String CourseClass){
 		for (int i = 0; i < Score.length; i ++) {
-			
+			if (Score[i] != null){
+				this.strSql = "UPDATE selecttable set Score = " + Score[i] + 
+						" WHERE StudentID = " + StudentID[i] + " AND CourseClass = " + 
+						 CourseClass + " AND CourseID = " + CourseClass;
+					
+				ResultSet rs = null;
+				try{
+					rs = super.exeQuery(this.strSql);
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+					return false;
+				}
+			}
 		}
 		return true;
 	}
 	
-	
-	
 	public boolean exist() {
 		this.strSql = "SELECT * FROM SelectTable";
 		this.strSql = this.strSql + " where StudentID = '" + this.User + 
-				"CourseClass = '" + this.CourseClass + "'" + 
-				"CourseID = '" + this.CourseID + "'" ;
+				"' AND CourseClass = '" + this.CourseClass + "' AND " + 
+				" CourseID = '" + this.CourseID + "'" ;
 		
-		System.out.println(this.strSql);
+		//System.out.println(this.strSql);
 		
 		try {
 			ResultSet rs = super.exeQuery(this.strSql);
@@ -99,7 +110,7 @@ public class SelectCourse extends ExecuteDB{
 		
 		System.out.println(this.strSql);
 		
-		boolean isAdd = super.exeSQL(this.strSql);		
+		boolean isAdd = super.exeInsert(this.strSql);		
 		return isAdd;
 	}
 	

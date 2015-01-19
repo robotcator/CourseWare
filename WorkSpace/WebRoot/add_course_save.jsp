@@ -23,6 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<jsp:useBean scope="page" id="User" class="cJava.User" />
 	<jsp:useBean scope="page" id="Student" class="cJava.Student" />
 	<jsp:useBean scope="page" id="Scourse" class="cJava.SelectCourse" />
+	<jsp:useBean scope="page" id="Course" class=cJava.Course />
   
   </head>
   
@@ -42,23 +43,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		Scourse.setCourseClass(CourseClass);
 		Scourse.setCourseName(CourseName);
 		
-		if(Scourse.exist()){
-			out.println("<p>你已经选了&nbsp;<font color=red>"+CourseName+"</p>");
-			out.println("<input type=button name=btn1 value=返回 onClick='window.history.go(-1)'>");
-		}else{
-			
-			
-			if(User.add()){
-				Student.add();
-				out.println("<p><font color=blue>添加课程成功</font></p>");
-				out.println("<a href=\"add_student_info.jsp\"><font color=blue>继续添加</font></a>");
-			}
-			else
-			{
-				out.println("<p><font color=#0000FF>添加课程失败，请稍后重试</font></p>");
-				out.println("<input type=button name=btn2 value=返回 onClick='window.history.go(-1)'>");
-			}
-		} 
+		if (Course.exist(CourseID, CourseClass)) {
+			if(Scourse.exist()){
+				out.println("<p>你已经选了&nbsp;<font color=red>"+CourseName+"</p>");
+				out.println("<input type=button name=btn1 value=返回 onClick='window.history.go(-1)'>");
+			}else{
+				if(Scourse.add()){
+					out.println("<p><font color=blue>添加课程成功</font></p>");
+					out.println("<a href=\"add_course_info.jsp\"><font color=blue>继续添加</font></a>");
+				}
+				else
+				{
+					out.println("<p><font color=#0000FF>添加课程失败，请稍后重试</font></p>");
+					out.println("<input type=button name=btn2 value=返回 onClick='window.history.go(-1)'>");
+				}
+			} 
+		} else {
+			out.println("<p>该课程不存在<font color=red></p>");
+		}
 	%>	
 	</div>
   </body>

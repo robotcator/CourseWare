@@ -33,7 +33,7 @@ public class Teacher extends ExecuteDB{
 		this.strSql="delete from TeacherTable where TeacherID in (";
 		this.strSql=this.strSql + sUserID + ")";
 		
-		System.out.println(this.strSql);
+		//System.out.println(this.strSql);
 		
 		boolean isDelete = super.exeSQL(this.strSql);		
 		return isDelete;
@@ -54,7 +54,7 @@ public class Teacher extends ExecuteDB{
 		this.strSql=this.strSql + "'" + this.Department + "'";
 		this.strSql=this.strSql + ")";
 		
-		System.out.println(this.strSql);
+		//System.out.println(this.strSql);
 		
 		boolean isAdd = super.exeSQL(this.strSql);		
 		return isAdd;
@@ -67,7 +67,7 @@ public class Teacher extends ExecuteDB{
 				" c.TeacherID = " + this.TeacherID + " AND c.TeacherID = e.TeacherID " +
 				" AND e.CourseID = b.CourseID AND b.StudentID = a.StudentID ";
 		
-		System.out.println(this.strSql);
+		//System.out.println(this.strSql);
 		
 		ResultSet rs = null;
 		try{

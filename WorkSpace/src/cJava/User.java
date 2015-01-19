@@ -41,7 +41,7 @@ public class User extends ExecuteDB{
 		this.strSql = this.strSql + " Where User = '" + this.userName + "'";
 		this.strSql = this.strSql + " AND PassWord = '" + this.passWord + "'";
 		
-		System.out.println(this.strSql);
+		//System.out.println(this.strSql);
 		
 		try {
 			ResultSet rs = super.exeQuery(this.strSql);
@@ -63,7 +63,7 @@ public class User extends ExecuteDB{
 		this.strSql = "SELECT * FROM 'Login'";
 		this.strSql = this.strSql + " where User = '" + this.userName + "'";
 		
-		System.out.println(this.strSql);
+		//System.out.println(this.strSql);
 		
 		try {
 			ResultSet rs = super.exeQuery(this.strSql);
@@ -91,17 +91,96 @@ public class User extends ExecuteDB{
 		this.strSql=this.strSql + "'" + this.Role + "'";
 		this.strSql=this.strSql + ")";
 		
-		System.out.println(this.strSql);
+		//System.out.println(this.strSql);
 		
 		boolean isAdd = super.exeSQL(this.strSql);		
 		return isAdd;
+	}
+	
+	public int addNeedandOffer(String StudentID, 
+			String[] CourseID, String[] CourseClass, String[] Offer, String[] Need){
+		
+		int cnt = 0;
+		for (int i = 0; i < Need.length; i ++) {
+			String temp = "";
+			if (Need[i] != null){
+				temp = "select studentID FROM CourseNeed " + 
+						"Where Student = " + StudentID + " AND " + 
+						"CourseID[i] = " + CourseID[Integer.parseInt(Need[i])] + " AND " + 
+						"CourseClass[i] = " + CourseClass[Integer.parseInt(Need[i])]; 
+				this.strSql = "insert into CourseNeed ";
+				this.strSql = this.strSql + "(";        
+				this.strSql = this.strSql + "StudentID,";
+				this.strSql = this.strSql + "CourseID,";
+				this.strSql = this.strSql + "CourseClass";          
+				this.strSql=this.strSql + ") ";        
+				this.strSql=this.strSql + "values(";
+				this.strSql=this.strSql + "'" + StudentID + "',";	
+				this.strSql=this.strSql + "'" + CourseID[Integer.parseInt(Need[i])] + "',";
+				this.strSql=this.strSql + "'" + CourseClass[Integer.parseInt(Need[i])] + "'";
+				this.strSql=this.strSql + ")";
+			} 
+			//System.out.println(this.strSql);
+			try {
+				ResultSet rs = super.exeQuery(temp);
+				if(rs == null) {
+					boolean isAdd = super.exeInsert(this.strSql);	
+					
+					if (isAdd) {
+						cnt ++;
+					}
+				} else  {
+					
+				}
+			} catch (Exception e) {
+				System.out.println(e.toString());
+			}
+		}
+		
+		for (int i = 0; i < Offer.length; i ++) {
+			String temp = "";
+			if (Offer[i] != null){
+				temp = "select studentID FROM CourseOffer " + 
+						"Where Student = " + StudentID + " AND " + 
+						"CourseID[i] = " + CourseID[Integer.parseInt(Offer[i])] + " AND " + 
+						"CourseClass[i] = " + CourseClass[Integer.parseInt(Offer[i])]; 
+				
+				this.strSql = "insert into CourseOffer ";
+				this.strSql = this.strSql + "(";        
+				this.strSql = this.strSql + "StudentID,";
+				this.strSql = this.strSql + "CourseID,";
+				this.strSql = this.strSql + "CourseClass";          
+				this.strSql=this.strSql + ") ";        
+				this.strSql=this.strSql + "values(";
+				this.strSql=this.strSql + "'" + StudentID + "',";	
+				this.strSql=this.strSql + "'" + CourseID[Integer.parseInt(Offer[i])] + "',";
+				this.strSql=this.strSql + "'" + CourseClass[Integer.parseInt(Offer[i])] + "'";
+				this.strSql=this.strSql + ")";
+			} 
+			//System.out.println(this.strSql);
+			try {
+				ResultSet rs = super.exeQuery(temp);
+				if(rs == null) {
+					boolean isAdd = super.exeInsert(this.strSql);		
+					if (isAdd) {
+						cnt ++;
+					}
+				} else  {
+					
+				}
+			} catch (Exception e) {
+				System.out.println(e.toString());
+			}
+		}
+		
+		return cnt;
 	}
 	
 	public boolean delete(String sUserID){
 		this.strSql="delete from Login where User in (";
 		this.strSql=this.strSql + sUserID + ")";
 		
-		System.out.println(this.strSql);
+		//System.out.println(this.strSql);
 		
 		boolean isDelete = super.exeSQL(this.strSql);		
 		return isDelete;

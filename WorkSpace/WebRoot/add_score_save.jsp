@@ -27,6 +27,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <%
     	String Score[] = request.getParameterValues("score");
     	String StudentID[] = request.getParameterValues("studentID");
+    	String CourseID = request.getParameter("CourseID");
+    	String CourseClass = request.getParameter("Courseclass");
+    	
+		if(Sscore.addScore(Score, StudentID, CourseID, CourseClass)){
+			out.println("<p><font color=blue>添加成绩成功</font></p>");
+		} else {
+			out.println("<p><font color=#0000FF>添加成绩失败，可能某处出错</font></p>");
+			out.println("<input type=button name=btn2 value=返回 onClick='window.history.go(-1)'>");
+		}
     	
      %>
   </body>

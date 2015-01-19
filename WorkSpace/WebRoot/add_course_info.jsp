@@ -19,7 +19,76 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-
+	
+	<link rel="stylesheet" href="./js/jquery-ui-1.11.2/jquery-ui.css" />
+  	<script src="./js/jquery-1-11.js"></script>
+  	<script src="./js/jquery-ui-1.11.2//jquery-ui.js"></script>
+  	
+  	<!--  
+  		使用jquery ui 实现自动补全
+  	-->
+  	
+  <script>
+  $(function() {
+    $( '#CourseID' )
+    .bind( "keydown", function( event ) {
+        if ( event.keyCode === $.ui.keyCode.TAB &&
+            $( this ).data( "ui-autocomplete" ).menu.active ) {
+          event.preventDefault();
+        }
+     })
+     
+    .autocomplete({
+      source: function( request, response ) {
+        $.ajax({
+          url: "/Test/CourseID.jsp",
+          dataType: "json",
+          success: function( data ) {
+            response( $.each( data, function(i, item) {
+              return item;
+            }));
+          }
+        });
+      },
+      minLength: 0,
+      focus: function() {
+          // 防止在获得焦点时插入值
+          return false;
+      }
+    });
+  });
+  </script>
+  <script>
+  $(function() {
+    $( '#CourseName' )
+    .bind( "keydown", function( event ) {
+        if ( event.keyCode === $.ui.keyCode.TAB &&
+            $( this ).data( "ui-autocomplete" ).menu.active ) {
+          event.preventDefault();
+        }
+     })
+     
+    .autocomplete({
+      source: function( request, response ) {
+        $.ajax({
+          url: "/Test/CourseName.jsp",
+          dataType: "json",
+          success: function( data ) {
+            response( $.each( data, function(i, item) {
+              return item;
+            }));
+          }
+        });
+      },
+      minLength: 0,
+      focus: function() {
+          // 防止在获得焦点时插入值
+          return false;
+      }
+    });
+  });
+  </script>
+  
   </head>
   
   <body>
@@ -36,20 +105,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
 	
 	<div id="content" style="background-color:#EEEEEE;height:300pt;width:90%;x;float:left;">
-		<form name="course_form" method="post" action="add_score_save.jsp" >
+		<form name="course_form" method="post" action="add_course_save.jsp" >
 	
 			<table width="90%" style="center">
 			<tr>
 				<td width="20%"height="30" align="right">课程编号:</td>
-				<td width="30%"height="30" align="left">&nbsp;<input type="text" name="CourseID" size="20"></td>
+				<td width="30%"height="30" align="left">&nbsp;
+				<input id="CourseID" type="text" name="CourseID" size="20"></td>
 			</tr>
 			<tr>
 				<td width="20%"height="30" align="right">&nbsp;课堂号:</td>
-				<td width="30%"height="30" align="left">&nbsp;<input type="text" name="CourseClass" size="20"></td>
+				<td width="30%"height="30" align="left">&nbsp;
+				<input type="text" name="CourseClass" size="20"></td>
 			</tr>
 			<tr>	
 				<td width="20%"height="30" align="right">&nbsp;课程名字:</td>
-				<td width="30%"height="30" align="left">&nbsp;<input type="text" name="CourseName" size="20"></td>
+				<td width="30%"height="30" align="left">&nbsp;
+				<input id="CourseName" type="text" name="CourseName" size="20"></td>
 			</tr>
 			
 			</table>
